@@ -3,6 +3,7 @@ import HomePage from './pages/home/home'
 import Listing from './pages/listing/listing'
 import Layout from './pages/layout/layout'
 import SinglePage from './pages/singlePage/singlePage'
+import Profile from './pages/profile/profile'
 
 function App() {
 
@@ -22,6 +23,10 @@ function App() {
         {
           path: '/listing/:id',
           element: <SinglePage/>
+        },
+        {
+          path: '/profile',
+          element: <Profile/>
         }
       ]
     }
