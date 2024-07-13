@@ -4,6 +4,10 @@ import Listing from './pages/listing/listing'
 import Layout from './pages/layout/layout'
 import SinglePage from './pages/singlePage/singlePage'
 import Profile from './pages/profile/profile'
+import Login from './pages/login/login'
+import Register from './pages/register/register'
+import NewPostPage from './pages/newPost/newPost'
+import ProfileUpdatePage from './pages/profileUpdate/profileUpdate'
 
 function App() {
 
@@ -27,6 +31,22 @@ function App() {
         {
           path: '/profile',
           element: <Profile/>
+        },
+        {
+          path:"/login",
+          element: <Login/>
+        },
+        {
+          path:"/register",
+          element: <Register/>
+        },
+        {
+          path:"/newPost",
+          element: <NewPostPage/>
+        },
+        {
+          path:"/profileUpdate",
+          element: <ProfileUpdatePage/>
         }
       ]
     }
