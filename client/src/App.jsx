@@ -1,13 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './pages/home/home'
 import Listing from './pages/listing/listing'
-import Layout from './pages/layout/layout'
+import {Layout, RequireAuth } from './pages/layout/layout'
 import SinglePage from './pages/singlePage/singlePage'
 import Profile from './pages/profile/profile'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
 import NewPostPage from './pages/newPost/newPost'
 import ProfileUpdatePage from './pages/profileUpdate/profileUpdate'
+
 
 function App() {
 
@@ -29,10 +30,6 @@ function App() {
           element: <SinglePage/>
         },
         {
-          path: '/profile',
-          element: <Profile/>
-        },
-        {
           path:"/login",
           element: <Login/>
         },
@@ -44,8 +41,18 @@ function App() {
           path:"/newPost",
           element: <NewPostPage/>
         },
+      ]
+    },
+    {
+      path:"/",
+      element: <RequireAuth/>,
+      children: [
         {
-          path:"/profileUpdate",
+          path: '/profile',
+          element: <Profile/>
+        },
+        {
+          path:"/updateProfile",
           element: <ProfileUpdatePage/>
         }
       ]
