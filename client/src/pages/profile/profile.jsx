@@ -49,7 +49,7 @@ export default function Profile() {
               errorElement={<p>Error loading posts!</p>}
             >
               {(postResponse) =>
-                <List posts = {postResponse.data.userPosts} />
+                <List posts={postResponse.data.userPosts} />
               }
             </Await>
           </Suspense>
@@ -62,7 +62,7 @@ export default function Profile() {
               errorElement={<p>Error loading posts!</p>}
             >
               {(postResponse) =>
-                <List posts = {postResponse.data.savedPosts} />
+                <List posts={postResponse.data.savedPosts} />
               }
             </Await>
           </Suspense>
@@ -70,7 +70,16 @@ export default function Profile() {
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) =>
+                <Chat chats = {chatResponse.data}/>
+              }
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>
