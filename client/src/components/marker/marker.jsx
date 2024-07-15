@@ -8,7 +8,7 @@ export default function MapMarker({item}) {
     <Marker position={position}>
         <Popup>
             <div className="popupContainer">
-              <img src={item.img} alt={item.title} />
+              <img src={item.images[0]} alt={item.title} />
               <div className="textContainer">
                 <Link to={`/listing/${item.id}`}>{item.title}</Link>
                 <span className='bed'>{item.bedroom} bedrooms</span>

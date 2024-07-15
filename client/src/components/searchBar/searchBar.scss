@@ -60,18 +60,26 @@
       }
     }
 
-    button {
-      border: none;
-      cursor: pointer;
-      background-color: #fece51;
+    a{
       flex: 1;
-      @include sm{
-        padding: 10px;
-      }
+      background-color: #fece51;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
 
-      img {
-        width: 22px;
-        height: 22px;
+        @include sm{
+          padding: 10px;
+        }
+  
+        img {
+          width: 22px;
+          height: 22px;
+        }
       }
     }
   }

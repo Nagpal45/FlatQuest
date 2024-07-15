@@ -8,7 +8,7 @@ import Login from './pages/login/login'
 import Register from './pages/register/register'
 import NewPostPage from './pages/newPost/newPost'
 import ProfileUpdatePage from './pages/profileUpdate/profileUpdate'
-import { singlePageLoader } from './lib/loaders'
+import { listPageLoader, singlePageLoader } from './lib/loaders'
 
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
         },
         {
           path: '/listings',
-          element: <Listing/>
+          element: <Listing/>,
+          loader: listPageLoader,
         },
         {
           path: '/listing/:id',
