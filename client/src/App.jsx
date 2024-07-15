@@ -37,10 +37,6 @@ function App() {
           path:"/register",
           element: <Register/>
         },
-        {
-          path:"/newPost",
-          element: <NewPostPage/>
-        },
       ]
     },
     {
@@ -54,7 +50,11 @@ function App() {
         {
           path:"/updateProfile",
           element: <ProfileUpdatePage/>
-        }
+        },
+        {
+          path:"/newPost",
+          element: <NewPostPage/>
+        },
       ]
     }
   ])
