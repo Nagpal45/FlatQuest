@@ -8,7 +8,7 @@ import Login from './pages/login/login'
 import Register from './pages/register/register'
 import NewPostPage from './pages/newPost/newPost'
 import ProfileUpdatePage from './pages/profileUpdate/profileUpdate'
-import { listPageLoader, singlePageLoader } from './lib/loaders'
+import { listPageLoader, profilePageLoader, singlePageLoader } from './lib/loaders'
 
 
 function App() {
@@ -48,7 +48,8 @@ function App() {
       children: [
         {
           path: '/profile',
-          element: <Profile/>
+          element: <Profile/>,
+          loader: profilePageLoader
         },
         {
           path:"/updateProfile",
