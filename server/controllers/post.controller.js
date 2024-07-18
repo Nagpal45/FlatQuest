@@ -46,6 +46,7 @@ export const getPost = async (req, res) => {
 
         if(!token) {
             userId = null;
+            return res.status(200).json({ ...post, isSaved: false });
         } else {
             jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
                 if(err) {
