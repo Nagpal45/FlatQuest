@@ -30,8 +30,11 @@ export default function Slider({ images }) {
         }}/>}
       </div>
       {images.length > 1 && <div className="smallImages">
-        {images.slice(1,4).map((image, index) => (
-          <img key={index} src={image} alt="" onClick={() => setImageIndex(index+1)} />
+        {images.slice(1).map((image, index) => (
+          <div className='smallImage' key={index}>
+          <img src={image} alt="" onClick={() => setImageIndex(index+1)} />
+          {index === 2 && <div className="moreImages" onClick={() => setImageIndex(index+1)} >+{images.length - 3} more photos</div>}
+          </div>
         ))}
       </div>}
     </div>

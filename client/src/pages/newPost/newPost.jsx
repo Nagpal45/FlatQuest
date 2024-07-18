@@ -44,7 +44,6 @@ function NewPostPage() {
           restaurant: parseInt(inputs.restaurant)
         }
       });
-      console.log(res.data);
       navigate("/listing/" + res.data.id);
     } catch (err) {
       console.log(err);

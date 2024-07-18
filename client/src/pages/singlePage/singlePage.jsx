@@ -9,11 +9,9 @@ import Map from "../../components/map/map";
 
 function SinglePage() {
   const post = useLoaderData();
-  console.log(post);
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(post.user);
 
   const handleSave = async () => {
     if (!currentUser) {
@@ -120,7 +118,7 @@ function SinglePage() {
                 <span>School</span>
                 <p>
                   {post.postDetail.school > 999
-                    ? post.postDetail.school / 1000 + "km"
+                    ? (post.postDetail.school / 1000).toFixed(1) + "km"
                     : post.postDetail.school + "m"}{" "}
                   away
                 </p>
@@ -130,14 +128,14 @@ function SinglePage() {
               <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
-                <p>{post.postDetail.bus}m away</p>
+                <p>{post.postDetail.bus > 999 ? (post.postDetail.bus / 1000).toFixed(1) + "km" : post.postDetail.bus + "m"} away</p>
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Restaurant</span>
-                <p>{post.postDetail.restaurant}m away</p>
+                <p>{post.postDetail.restaurant > 999 ? (post.postDetail.restaurant / 1000).toFixed(1) + "km" : post.postDetail.restaurant + "m"} away</p>
               </div>
             </div>
           </div>
