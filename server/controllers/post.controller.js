@@ -75,6 +75,7 @@ export const getPost = async (req, res) => {
                 postDetail: true,
                 user: {
                     select: {
+                        id: true,
                         username: true,
                         avatar: true
                     }
@@ -153,6 +154,14 @@ export const deletePost = async (req, res) => {
         if (post.userId !== tokenUserId) {
             return res.status(403).json({ error: 'You are not authorized to delete this post' });
         }
+
+        await prisma.postDetail.delete({
+            where: { postId: id }
+        });
+
+        await prisma.savedPost.deleteMany({
+            where: { postId: id }
+        });
 
         await prisma.post.delete({
             where: { id }

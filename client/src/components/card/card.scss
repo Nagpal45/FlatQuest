@@ -7,6 +7,11 @@
     .imageContainer{
         flex:2;
         height: 200px;
+        background-color: #999898;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
 
         @include sm{
             display: none;

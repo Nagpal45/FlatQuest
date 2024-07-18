@@ -13,6 +13,7 @@ function SinglePage() {
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(post.user);
 
   const handleSave = async () => {
     if (!currentUser) {
@@ -27,6 +28,11 @@ function SinglePage() {
       setSaved((prev) => !prev);
     }
   };
+
+  const  handleDelete = async () =>{
+    const res = await apiRequest.delete(`/posts/${post.id}`);
+    navigate("/profile");
+  }
 
   return (
     <div className="singlePage">
@@ -139,24 +145,39 @@ function SinglePage() {
           <div className="mapContainer">
             <Map items={[post]} />
           </div>
-          <div className="buttons">
-            <button>
-              <img src="/chat.png" alt="" />
-              Send a Message
-            </button>
-            <button
-              onClick={handleSave}
-              style={{
-                backgroundColor: saved ? "#fece51" : "white",
-              }}
-            >
-              <img src="/save.png" alt="" />
-              {saved ? "Place Saved" : "Save the Place"}
-            </button>
-          </div>
-        </div>
+          {
+            currentUser.id !== post.user.id ? (
+              <div className="buttons">
+                <button>
+                  <img src="/chat.png" alt="" />
+                  Send a Message
+                </button>
+                <button
+                  onClick={handleSave}
+                  style={{
+                    backgroundColor: saved ? "#fece51" : "white",
+                  }}
+                >
+                  <img src="/save.png" alt="" />
+                  {saved ? "Place Saved" : "Save the Place"}
+                </button>
+              </div>
+            ) : (
+              <div className="buttons">
+                <button>
+                  <img src="/edit.png" alt="" />
+                  Edit the Place
+                </button>
+                <button onClick={handleDelete}>
+                  <img src="/delete.png" alt="" />
+                  Delete the Place
+                </button>
+              </div>
+        )
+          }
       </div>
     </div>
+    </div >
   );
 }
 

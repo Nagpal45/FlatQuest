@@ -5,7 +5,6 @@ import { useContext, useState } from 'react';
 import apiRequest from '../../lib/apiRequest';
 
 export default function Card({ item }) {
-  console.log(item);
   const [saved, setSaved] = useState(item.isSaved);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,11 +22,21 @@ export default function Card({ item }) {
     }
   };
 
+  const  handleDelete = async () =>{
+    const res = await apiRequest.delete(`/posts/${item.id}`);
+    window.location.reload();
+  }
+
 
   return (
     <div className='card'>
       <Link to={`/listing/${item.id}`} className='imageContainer'>
-        <img src={item.images[0]} alt={item.title} />
+        {item.images.length > 0 ? <img src={item.images[0]} alt=""/> : <img src="/home.png" alt="" style={{
+          width: "30px",
+          height: "30px",
+          borderRadius: "0px",
+          filter: "invert(1)",
+        }}/>}
       </Link>
       <div className="textContainer">
         <h2 className="title">
@@ -57,7 +66,7 @@ export default function Card({ item }) {
                     <img src="/edit.png" alt="edit" />
                   </div>
                   <div className="icon">
-                    <img src="/delete.png" alt="delete" />
+                    <img src="/delete.png" alt="delete" onClick = {handleDelete}/>
                   </div>
                 </>
               ) : (

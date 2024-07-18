@@ -22,13 +22,18 @@ export default function Slider({ images }) {
         </div>
       </div>)}
       <div className="bigImage">
-        <img src={images[0]} alt="" onClick={() => setImageIndex(0)} />
+       {images.length > 0 ? <img src={images[0]} alt="" onClick={() => setImageIndex(0)} /> : <img src="/home.png" alt="" style={{
+          width: "30px",
+          height: "30px",
+          borderRadius: "0px",
+          filter: "invert(1)",
+        }}/>}
       </div>
-      <div className="smallImages">
+      {images.length > 1 && <div className="smallImages">
         {images.slice(1,4).map((image, index) => (
           <img key={index} src={image} alt="" onClick={() => setImageIndex(index+1)} />
         ))}
-      </div>
+      </div>}
     </div>
   )
 }

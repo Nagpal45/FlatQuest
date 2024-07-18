@@ -76,6 +76,11 @@
 
   .bigImage {
     flex: 3;
+    background-color: #999898;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 
     @include sm {
       flex: 2;
