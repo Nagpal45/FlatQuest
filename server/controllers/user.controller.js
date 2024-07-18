@@ -115,6 +115,7 @@ export const savePost = async (req, res) => {
       const userPosts = await prisma.post.findMany({
         where: { userId: tokenUserId },
       });
+  
       const saved = await prisma.savedPost.findMany({
         where: { userId: tokenUserId },
         include: {
@@ -122,13 +123,18 @@ export const savePost = async (req, res) => {
         },
       });
   
-      const savedPosts = saved.map((item) => item.post);
+      const savedPosts = saved.map((item) => ({
+        ...item.post,
+        isSaved: true,
+      }));
+  
       res.status(200).json({ userPosts, savedPosts });
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Failed to get profile posts!" });
     }
   };
+  
 
   export const getNotificationNumber = async (req, res) => {
     const tokenUserId = req.userId;

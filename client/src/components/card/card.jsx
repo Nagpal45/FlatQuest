@@ -1,7 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './card.scss';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext, useState } from 'react';
+import apiRequest from '../../lib/apiRequest';
 
 export default function Card({ item }) {
+  console.log(item);
+  const [saved, setSaved] = useState(item.isSaved);
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSave = async () => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+    setSaved((prev) => !prev);
+    try {
+      await apiRequest.post("/user/save", { postId: item.id });
+    } catch (err) {
+      console.log(err);
+      setSaved((prev) => !prev);
+    }
+  };
+
+
   return (
     <div className='card'>
       <Link to={`/listing/${item.id}`} className='imageContainer'>
@@ -28,12 +50,29 @@ export default function Card({ item }) {
             </div>
           </div>
           <div className="icons">
-          <div className="icon">
-            <img src="/save.png" alt="save" />
-          </div>
-          <div className="icon">
-            <img src="/chat.png" alt="chat" />
-          </div>
+            {
+              item.userId === currentUser?.id ? (
+                <>
+                  <div className="icon">
+                    <img src="/edit.png" alt="edit" />
+                  </div>
+                  <div className="icon">
+                    <img src="/delete.png" alt="delete" />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="icon" onClick={handleSave} style={{
+                backgroundColor: saved ? "#fece51" : "white",
+              }}>
+                    <img src="/save.png" alt="save" />
+                  </div>
+                  <div className="icon">
+                    <img src="/chat.png" alt="chat" />
+                  </div>
+                </>
+              )
+            }
           </div>
         </div>
       </div>
