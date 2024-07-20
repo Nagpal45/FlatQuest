@@ -9,6 +9,8 @@ import Register from './pages/register/register'
 import NewPostPage from './pages/newPost/newPost'
 import ProfileUpdatePage from './pages/profileUpdate/profileUpdate'
 import { listPageLoader, profilePageLoader, singlePageLoader } from './lib/loaders'
+import About from './pages/about/about'
+import Contact from './pages/contact/contact'
 
 
 function App() {
@@ -39,6 +41,14 @@ function App() {
         {
           path:"/register",
           element: <Register/>
+        },
+        {
+          path:"/about",
+          element: <About/>
+        },
+        {
+          path:"/contact",
+          element: <Contact/>
         },
       ]
     },

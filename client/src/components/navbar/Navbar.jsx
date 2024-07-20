@@ -24,10 +24,9 @@ function Navbar() {
           <img src="/logo.png" alt="" />
           <span>VNestate</span>
         </Link>
-        <Link href="">Home</Link>
-        <Link href="">About</Link>
-        <Link href="">Contact</Link>
-        <Link href="">Agents</Link>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
       </div>
       <div className="right">
         {currentUser ? (<div className="user">
@@ -51,7 +50,6 @@ function Navbar() {
           <Link href="">Home</Link>
           <Link href="">About</Link>
           <Link href="">Contact</Link>
-          <Link href="">Agents</Link>
           {currentUser ? (<Link to="/profile" className='profile'>
             <span>Profile</span>
             </Link>) : (
