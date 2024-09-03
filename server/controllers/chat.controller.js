@@ -83,7 +83,19 @@ export const addChat = async (req, res) => {
       },
     });
 
+    const receiver = await prisma.user.findUnique({
+      where: {
+        id: req.body.receiverId,
+      },
+      select: {
+        id: true,
+        username: true,
+        avatar: true,
+      },
+    });
+
     if (existingChat) {
+      existingChat.receiver = receiver;
       return res.status(200).json(existingChat);
     }
     const newChat = await prisma.chat.create({
@@ -91,6 +103,7 @@ export const addChat = async (req, res) => {
         userIDs: [tokenUserId, req.body.receiverId],
       },
     });
+    newChat.receiver = receiver
     res.status(200).json(newChat);
   } catch (err) {
     console.log(err);
