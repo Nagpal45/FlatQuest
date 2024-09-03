@@ -23,10 +23,17 @@ export default function Card({ item }) {
   };
 
   const  handleDelete = async () =>{
-    const res = await apiRequest.delete(`/posts/${item.id}`);
+    await apiRequest.delete(`/posts/${item.id}`);
     window.location.reload();
   }
 
+  const handleChat = async (rID) =>{
+    console.log(rID);
+    
+    const chat = await apiRequest.post('/chats', {receiverId: rID})
+    console.log(chat.data);
+  }
+  
 
   return (
     <div className='card'>
@@ -76,7 +83,7 @@ export default function Card({ item }) {
               }}>
                     <img src="/save.png" alt="save" />
                   </div>
-                  <div className="icon">
+                  <div className="icon" onClick={() => handleChat(item.user.id)}>
                     <img src="/chat.png" alt="chat" />
                   </div>
                 </>
