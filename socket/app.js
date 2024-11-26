@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io = new Server({
   cors: {
-    origin: "https://flat-quest.vercel.app/",
+    origin: "https://flat-quest.vercel.app",
   },
 });
 
